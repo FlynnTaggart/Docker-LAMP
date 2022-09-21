@@ -35,10 +35,12 @@ class DrawerEngine {
         $halfHeight = $this->height / 2;
         switch ($this->shape) {
             case self::CIRCLE:
+                $centerX = $halfWidth + 5;
+                $centerY = $halfHeight + 5;
                 $figure = <<<A
                     <ellipse  
-                        cx="$halfWidth" 
-                        cy="$halfHeight" 
+                        cx="$centerX" 
+                        cy="$centerY" 
                         rx="$halfWidth" 
                         ry="$halfHeight" 
                         fill="$this->color"
@@ -48,7 +50,9 @@ class DrawerEngine {
                 break;
             case self::SQUARE:
                 $figure = <<<B
-                    <rect 
+                    <rect
+                        x="5"
+                        y="5"
                         width="$this->width" 
                         height="$this->height" 
                         fill="$this->color"
@@ -59,7 +63,7 @@ class DrawerEngine {
             case self::TRIANGLE:
                 $figure = <<<C
                     <polygon 
-                        points="$this->width,$this->height 0,0 0,$this->height" 
+                        points="$this->width,$this->height 5,5 5,$this->height" 
                         fill="$this->color"
                         stroke="black"
                         stroke-width="5"/>
@@ -68,7 +72,7 @@ class DrawerEngine {
             case self::REVTRIANGLE:
                 $figure = <<<D
                     <polygon 
-                        points="$this->width,$this->height $this->width,0 0,$this->height" 
+                        points="$this->width,$this->height $this->width,5 5,$this->height" 
                         fill="$this->color"
                         stroke="black"
                         stroke-width="5"/>
@@ -77,6 +81,8 @@ class DrawerEngine {
             default:
                 throw new Exception("Wrong input");
         }
+        $this->width += 10;
+        $this->height += 10;
         echo <<<E
         <svg 
             width="$this->width"
