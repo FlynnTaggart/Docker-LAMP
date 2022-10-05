@@ -4,39 +4,24 @@ GRANT SELECT,UPDATE,INSERT ON appDB.* TO 'user'@'%';
 FLUSH PRIVILEGES;
 
 USE appDB;
+SET names 'utf8';
+
 CREATE TABLE IF NOT EXISTS users (
-  ID INT(11) NOT NULL AUTO_INCREMENT,
-  name VARCHAR(20) NOT NULL,
-  surname VARCHAR(40) NOT NULL,
-  PRIMARY KEY (ID)
+    user varchar(64) primary key not null, 
+    passwd varchar(255)
 );
 
-INSERT INTO users (name, surname)
-SELECT * FROM (SELECT 'Alex', 'Rover') AS tmp
-WHERE NOT EXISTS (
-    SELECT name FROM users WHERE name = 'Alex' AND surname = 'Rover'
-) LIMIT 1;
+INSERT INTO users VALUES ('flynn', '{SHA}QL0AFWMIX8NRZTKeof9cXsvbvu8='); 
 
-INSERT INTO users (name, surname)
-SELECT * FROM (SELECT 'Bob', 'Marley') AS tmp
-WHERE NOT EXISTS (
-    SELECT name FROM users WHERE name = 'Bob' AND surname = 'Marley'
-) LIMIT 1;
+CREATE TABLE IF NOT EXISTS orders (
+    id bigint primary key not null AUTO_INCREMENT,
+    client_name varchar(64) not null,
+    first_dish varchar(64),
+    second_dish varchar(64),
+    drink varchar(64),
+    cost int not null
+);
 
-INSERT INTO users (name, surname)
-SELECT * FROM (SELECT 'Alex', 'Rover') AS tmp
-WHERE NOT EXISTS (
-    SELECT name FROM users WHERE name = 'Alex' AND surname = 'Rover'
-) LIMIT 1;
-
-INSERT INTO users (name, surname)
-SELECT * FROM (SELECT 'Kate', 'Yandson') AS tmp
-WHERE NOT EXISTS (
-    SELECT name FROM users WHERE name = 'Kate' AND surname = 'Yandson'
-) LIMIT 1;
-
-INSERT INTO users (name, surname)
-SELECT * FROM (SELECT 'Lilo', 'Black') AS tmp
-WHERE NOT EXISTS (
-    SELECT name FROM users WHERE name = 'Lilo' AND surname = 'Black'
-) LIMIT 1;
+INSERT INTO orders (client_name, first_dish, second_dish, drink, cost) VALUES ('Вася', 'Карбонара', 'Борщ', 'Яблочный сок', '1000'); 
+INSERT INTO orders (client_name, drink, cost) VALUES ('Коля', 'Китайский чай', '200');
+INSERT INTO orders (client_name, first_dish, cost) VALUES ('Петя', 'Пицца', '500');

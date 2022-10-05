@@ -6,10 +6,10 @@ services:
       context: php
       dockerfile: Dockerfile
     volumes:
-      - ./html/:/var/www/html/
+      - ./src:/var/www/my-html
+      - ./logs/apache2:/var/log/apache2
+      - ./apache2/000-default.conf:/etc/apache2/sites-available/000-default.conf
     restart: always
-    ports:
-      - 8080:80
     links:
       - mysql
 
@@ -25,6 +25,23 @@ services:
     volumes:
       - mysql:/var/lib/mysql
       - ./mysql-init/:/docker-entrypoint-initdb.d/:ro
+
+  front:
+    image: nginx
+    restart: always
+    command: [ nginx, '-g', 'daemon off;' ]
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./src:/usr/share/nginx/my-html
+      - ./logs/nginx:/var/log/nginx
+    ports:
+      - 80:80
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    links:
+      - mysql
+      - php
 
 volumes:
   mysql:
