@@ -8,26 +8,26 @@
 <h2>Add order</h2>
 <form method="post">
     <div>
-      <input id="client_name" class='input' placeholder='Client name' type='text' name="client_name" required>
+      <input class='input' placeholder='Client name' type='text' name="client_name" required>
     </div>
     <div>
-      <input id="first_dish" class='input' placeholder='First dish' type='text' name="first_dish">
+      <input class='input' placeholder='First dish' type='text' name="first_dish">
     </div>
     <div>
-      <input id="second_dish" class='input' placeholder='Second name' type='text' name="second_dish">
+      <input class='input' placeholder='Second name' type='text' name="second_dish">
     </div>
     <div>
-      <input id="drink" class='input' placeholder='Drink' type='text' name="drink">
+      <input class='input' placeholder='Drink' type='text' name="drink">
     </div>
     <div>
-      <input id="cost" class='input' placeholder='Cost' type='text' name="cost" required>
+      <input class='input' placeholder='Cost' type='text' name="cost" required>
     </div>
     <input class='submit' type='submit' value='Add'>
 </form>
 <h2>Delete order</h2>
 <form method="post">
     <div>
-      <input id="id" class='input' placeholder='ID' type='text' name="id" required>
+      <input class='input' placeholder='ID' type='text' name="id" required>
     </div>
     <input class='submit' type='submit' value='Delete'>
 </form>
