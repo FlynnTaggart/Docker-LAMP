@@ -11,7 +11,7 @@ class RestaurantApi extends Api {
     protected function indexAction() {
         $DB = new Database();
 
-        $limit = $this->requestParams[0];
+        $limit = $this->requestParams["limit"];
 
         if($limit) {
             try {
@@ -34,18 +34,76 @@ class RestaurantApi extends Api {
     }
 
     protected function viewAction() {
-        return $this->response("Lox", 405);
+        $DB = new Database();
+
+        $id = $this->requestUri[0];
+
+        if($id) {
+            try {
+                $order = Restaurant::getOrderById($DB, $id);
+                if($order)
+                    return $this->response($order, 200);
+                else
+                    return $this->response(array(
+                        "message" => "No orders with such id"
+                    ), 401);
+            } catch (Exception $e) {
+                return $this->response(array(
+                    "message" => $e->getMessage()
+                ), 401);
+            }
+        }
     }
 
     protected function createAction() {
-        return $this->response("Lox", 405);
+        $DB = new Database();
+
+        $order = new Order($this->requestParams);
+
+        try {
+            $id = Restaurant::createOrder($DB, $order);
+            return $this->response($id, 201);
+        } catch (Exception $e) {
+            return $this->response(array(
+                "message" => $e->getMessage()
+            ), 401);
+        }
     }
 
     protected function updateAction() {
-        return $this->response("Lox", 405);
+        $DB = new Database();
+
+        $order = new Order($this->requestParams);
+        $id = $this->requestUri[0];
+
+        try {
+            Restaurant::updateOrderById($DB, $order, $id);
+            return $this->response(array(
+                "id" => $id
+            ), 201);
+        } catch (Exception $e) {
+            return $this->response(array(
+                "message" => $e->getMessage()
+            ), 401);
+        }
     }
 
     protected function deleteAction() {
-        return $this->response("Lox", 405);
+        $DB = new Database();
+
+        $id = $this->requestUri[0];
+
+        if($id) {
+            try {
+                Restaurant::delteOrderById($DB, $id);
+                return $this->response(array(
+                    "id" => $id
+                ), 201);
+            } catch (Exception $e) {
+                return $this->response(array(
+                    "message" => $e->getMessage()
+                ), 401);
+            }
+        }
     }
 }

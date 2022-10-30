@@ -20,10 +20,13 @@ class Database implements DatabaseInt {
     public function query($query = "" , $params = []) {
         try {
             $stmt = $this->exec( $query , $params );
-            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);               
+            $result = $stmt->get_result();
+            $fetched_result = $result;
+            if (!is_bool($result))
+                $fetched_result = $result->fetch_all(MYSQLI_ASSOC);       
             $stmt->close();
  
-            return $result;
+            return $fetched_result;
         } catch(Exception $e) {
             throw $e;
         }
@@ -37,9 +40,10 @@ class Database implements DatabaseInt {
             if($stmt === false) {
                 throw New Exception("Unable to do prepared statement: " . $query);
             }
- 
+            $a = array_slice($params, 1);
+
             if( $params ) {
-                $stmt->bind_param($params[0], $params);
+                $stmt->bind_param($params[0], ...$a);
             }
  
             $stmt->execute();

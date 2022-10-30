@@ -17,7 +17,7 @@ abstract class Api {
 
         // Params
         $this->requestUri = explode('/', trim($_SERVER['REQUEST_URI'],'/'));
-        $this->requestParams = $_REQUEST;
+        $this->requestParams = json_decode(file_get_contents('php://input'), true);
 
         // Method determination
         $this->method = $_SERVER['REQUEST_METHOD'];
@@ -61,6 +61,7 @@ abstract class Api {
     private function requestStatus($code) {
         $status = array(
             200 => 'OK',
+            201 => 'OK',
             401 => 'Bad Request',
             404 => 'Not Found',
             405 => 'Method Not Allowed',
