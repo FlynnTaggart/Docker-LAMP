@@ -6,7 +6,7 @@ class Order {
     public string $drink = "";
     public int    $cost = 0;
 
-    function __construct(array $params){
+    function __construct($params){
         if(is_array($params)){
             if($params["client_name"] != null)
                 $this->clientName = $params["client_name"];
@@ -18,6 +18,20 @@ class Order {
                 $this->drink = $params["drink"];
             if($params["cost"] != null)
                 $this->cost = $params["cost"];
+        }
+    }
+}
+
+class Product {
+    public string $productName = "";
+    public float $amount = 0;
+
+    function __construct($params){
+        if(is_array($params)){
+            if($params["product_name"] != null)
+                $this->productName = $params["product_name"];
+            if($params["amount"] != null)
+                $this->amount = $params["amount"];
         }
     }
 }

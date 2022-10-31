@@ -5,4 +5,4 @@ Require valid-user
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^((?!index\.php).+)$ /api/index.php
+RewriteRule ^((?!index\.php).+)$ /api/products/index.php

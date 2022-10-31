@@ -22,6 +22,12 @@ CREATE TABLE IF NOT EXISTS orders (
     cost int not null
 );
 
+CREATE TABLE IF NOT EXISTS products (
+    id bigint primary key not null AUTO_INCREMENT,
+    product_name varchar(64) not null,
+    amount float not null
+);
+
 INSERT INTO orders (client_name, first_dish, second_dish, drink, cost) VALUES ('Вася', 'Карбонара', 'Борщ', 'Яблочный сок', '1000'); 
 INSERT INTO orders (client_name, drink, cost) VALUES ('Коля', 'Китайский чай', '200');
 INSERT INTO orders (client_name, first_dish, cost) VALUES ('Петя', 'Пицца', '500');
