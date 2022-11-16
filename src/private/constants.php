@@ -37,6 +37,12 @@ abstract class ABS_DICTIONARY {
     public $COMMAND;
     public $EXECUTE;
     public $ERROR;
+
+    public $UPLOAD_FILE_TITLE;
+    public $CHOOSE;
+    public $SUBMIT_FILE;
+    public $UPLOADED_FILES;
+    public $FILE_ERROR;
 }
 
 class RU_DICTIONARY extends ABS_DICTIONARY {
@@ -66,6 +72,12 @@ class RU_DICTIONARY extends ABS_DICTIONARY {
     public $COMMAND = "Введите команду";
     public $EXECUTE = "Выполнить";
     public $ERROR = "Неизвестная или неверная команда";
+
+    public $UPLOAD_FILE_TITLE = "Загрузить файлы";
+    public $CHOOSE = "Выбрать";
+    public $SUBMIT_FILE = "Загрузить";
+    public $UPLOADED_FILES = "Загруженные файлы";
+    public $FILE_ERROR = "Попытка взлома";
 }
 
 
@@ -96,10 +108,19 @@ class EN_DICTIONARY extends ABS_DICTIONARY {
     public $COMMAND = "Enter Command";
     public $EXECUTE = "Execute";
     public $ERROR = "Wrong or not allowed command";
+
+    public $UPLOAD_FILE_TITLE = "Upload files";
+    public $CHOOSE = "Choose";
+    public $SUBMIT_FILE = "Upload";
+    public $UPLOADED_FILES = "Uploaded files";
+    public $FILE_ERROR = "Violation attempt";
 }
 
 $DICTIONARY = [
     "ru" => new RU_DICTIONARY,
     "en" => new EN_DICTIONARY,
 ];
+
+$uploaddir = '/var/www/my-html/uploads/';
+
 

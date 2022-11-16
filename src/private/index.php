@@ -81,5 +81,38 @@ $dictionary = $DICTIONARY[$_SESSION['language']];
 
     <button type="submit"><?php echo $dictionary->SAVE ?></button>
 </form>
+
+<h2>PDF</h2>
+<form enctype="multipart/form-data" action="pdf.php" method="post">
+    <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+    <div>
+        <?php echo $dictionary->UPLOAD_FILE_TITLE ?>:
+        <label for="uploadbtn" class="uploadButton" style="font-weight: bold">
+            <?php echo $dictionary->CHOOSE ?>
+        </label>
+        <div></div>
+        <input
+                style="opacity: 0; z-index: -1;"
+                type="file" name="userfile" id="uploadbtn"
+                onchange='document.querySelector(".uploadButton + div").innerHTML = Array.from(this.files).map(f => f.name).join("<br />")'
+        />
+    </div>
+    <input type="submit" value="<?php echo $dictionary->SUBMIT_FILE ?>" />
+</form>
+
+<h3><?php echo $dictionary->UPLOADED_FILES ?></h3>
+
+<?php
+$files = array_diff(scandir($uploaddir), array('.', '..'));
+
+echo "<ul>";
+foreach ($files as $file_name) {
+    echo "<li><a href=\"/uploads/{$file_name}\">{$file_name}</a></li>";
+}
+
+echo "</ul>";
+?>
+
+
 </body>
 </html>

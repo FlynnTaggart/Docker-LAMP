@@ -7,3 +7,5 @@ RUN pecl uninstall redis
 RUN apt-get install -y apache2-utils libaprutil1-dbd-mysql
 RUN pecl install redis
 RUN docker-php-ext-enable redis
+RUN mkdir -p /var/www/my-html/uploads/
+RUN chown root /var/www/my-html/uploads/ && chmod -R 777 /var/www/my-html/uploads/
