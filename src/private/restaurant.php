@@ -1,44 +1,57 @@
+<?php
+include 'session.php';
+include 'constants.php';
+
+$dictionary = $DICTIONARY[$_SESSION['language']];
+?>
+
 <html lang="en">
 <head>
-    <title>Hello page</title>
+    <title><?php echo $dictionary->RESTAURANT_TITLE ?></title>
     <link rel="stylesheet" href="style.css" type="text/css"/>
+    <?php
+    if ($_SESSION['theme'] == THEME::$DARK) {
+        echo '<link rel="stylesheet" href="style-dark.css">';
+    }
+    ?>
+
 </head>
 <body>
-<h1>Restaurant</h1>
-<h2>Add order</h2>
+<h1><?php echo $dictionary->RESTAURANT_TITLE ?></h1>
+<h2><?php echo $dictionary->ADD_ORDER_TITLE ?></h2>
 <form method="post">
     <div>
-      <input class='input' placeholder='Client name' type='text' name="client_name" required>
+      <input class='input' placeholder='<?php echo $dictionary->CLIENT_NAME ?>' type='text' name="client_name" required>
     </div>
     <div>
-      <input class='input' placeholder='First dish' type='text' name="first_dish">
+      <input class='input' placeholder='<?php echo $dictionary->FIRST ?>' type='text' name="first_dish">
     </div>
     <div>
-      <input class='input' placeholder='Second name' type='text' name="second_dish">
+      <input class='input' placeholder='<?php echo $dictionary->SECOND ?>' type='text' name="second_dish">
     </div>
     <div>
-      <input class='input' placeholder='Drink' type='text' name="drink">
+      <input class='input' placeholder='<?php echo $dictionary->DRINK ?>' type='text' name="drink">
     </div>
     <div>
-      <input class='input' placeholder='Cost' type='text' name="cost" required>
+      <input class='input' placeholder='<?php echo $dictionary->COST ?>' type='text' name="cost" required>
     </div>
-    <input class='submit' type='submit' value='Add'>
+    <input class='submit' type='submit' value='<?php echo $dictionary->ADD ?>'>
 </form>
-<h2>Delete order</h2>
+<h2><?php echo $dictionary->DELETE_ORDER_TITLE ?></h2>
 <form method="post">
     <div>
-      <input class='input' placeholder='ID' type='text' name="id" required>
+      <input class='input' placeholder='<?php echo $dictionary->ID ?>' type='text' name="id" required>
     </div>
-    <input class='submit' type='submit' value='Delete'>
+    <input class='submit' type='submit' value='<?php echo $dictionary->DELETE ?>'>
 </form>
 <table>
     <tr>
-        <th>Id</th>
-        <th>Client name</th>
-        <th>First dish</th>
-        <th>Second dish</th>
-        <th>Drink</th>
-        <th>Cost</th>
+        <th><?php echo $dictionary->ID ?></th>
+        <th><?php echo $dictionary->CLIENT_NAME ?></th>
+        <th><?php echo $dictionary->FIRST ?></th>
+        <th><?php echo $dictionary->SECOND ?></th>
+        <th><?php echo $dictionary->DRINK ?></th>
+        <th><?php echo $dictionary->COST ?></th>
     </tr>
     <?php
     function display(){
