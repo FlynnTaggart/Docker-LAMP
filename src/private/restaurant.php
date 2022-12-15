@@ -10,7 +10,7 @@ $dictionary = $DICTIONARY[$_SESSION['language']];
     <title><?php echo $dictionary->RESTAURANT_TITLE ?></title>
     <link rel="stylesheet" href="style.css" type="text/css"/>
     <?php
-    if ($_SESSION['theme'] == THEME::$DARK) {
+    if ($_SESSION['theme'] == USERTHEME::$DARK) {
         echo '<link rel="stylesheet" href="style-dark.css">';
     }
     ?>

@@ -10,7 +10,7 @@ $dictionary = $DICTIONARY[$_SESSION['language']];
     <title><?php echo $dictionary->TITLE ?></title>
     <link rel="stylesheet" href="style.css" type="text/css"/>
     <?php
-    if ($_SESSION['theme'] == THEME::$DARK) {
+    if ($_SESSION['theme'] == USERTHEME::$DARK) {
         echo '<link rel="stylesheet" href="style-dark.css">';
     }
     ?>
@@ -21,6 +21,7 @@ $dictionary = $DICTIONARY[$_SESSION['language']];
 <div>
     <a href="./exec.php"><?php echo $dictionary->EXEC_TITLE ?></a>
     <a href="./restaurant.php"><?php echo $dictionary->RESTAURANT_TITLE ?></a>
+    <a href="./stats.php"><?php echo $dictionary->STATS_TITLE?></a>
 </div>
 <h2><?php echo $dictionary->SETTINGS ?></h2>
 <form action="setting.php" method="post">
@@ -29,7 +30,7 @@ $dictionary = $DICTIONARY[$_SESSION['language']];
         <label>
             <input type="radio" name="theme"
                 <?php
-                if ($_SESSION['theme'] == THEME::$LIGHT) {
+                if ($_SESSION['theme'] == USERTHEME::$LIGHT) {
                     echo "checked";
                 }
                 ?> value="light">
@@ -38,7 +39,7 @@ $dictionary = $DICTIONARY[$_SESSION['language']];
         <label>
             <input type="radio" name="theme"
                 <?php
-                if ($_SESSION['theme'] == THEME::$DARK) {
+                if ($_SESSION['theme'] == USERTHEME::$DARK) {
                     echo "checked";
                 }
                 ?> value="dark">

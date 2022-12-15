@@ -19,7 +19,8 @@ CREATE TABLE IF NOT EXISTS orders (
     first_dish varchar(64),
     second_dish varchar(64),
     drink varchar(64),
-    cost int not null
+    cost int not null,
+    calories int
 );
 
 CREATE TABLE IF NOT EXISTS products (
@@ -27,7 +28,3 @@ CREATE TABLE IF NOT EXISTS products (
     product_name varchar(64) not null,
     amount float not null
 );
-
-INSERT INTO orders (client_name, first_dish, second_dish, drink, cost) VALUES ('Вася', 'Карбонара', 'Борщ', 'Яблочный сок', '1000'); 
-INSERT INTO orders (client_name, drink, cost) VALUES ('Коля', 'Китайский чай', '200');
-INSERT INTO orders (client_name, first_dish, cost) VALUES ('Петя', 'Пицца', '500');

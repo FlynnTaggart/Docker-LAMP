@@ -5,7 +5,7 @@ class LANGUAGE {
     public static $EN = "en";
 }
 
-class THEME {
+class USERTHEME {
     public static $LIGHT = "light";
     public static $DARK = "dark";
 }
@@ -43,6 +43,8 @@ abstract class ABS_DICTIONARY {
     public $SUBMIT_FILE;
     public $UPLOADED_FILES;
     public $FILE_ERROR;
+
+    public $STATS_TITLE;
 }
 
 class RU_DICTIONARY extends ABS_DICTIONARY {
@@ -78,6 +80,8 @@ class RU_DICTIONARY extends ABS_DICTIONARY {
     public $SUBMIT_FILE = "Загрузить";
     public $UPLOADED_FILES = "Загруженные файлы";
     public $FILE_ERROR = "Попытка взлома";
+
+    public $STATS_TITLE = "Статистика";
 }
 
 
@@ -114,6 +118,8 @@ class EN_DICTIONARY extends ABS_DICTIONARY {
     public $SUBMIT_FILE = "Upload";
     public $UPLOADED_FILES = "Uploaded files";
     public $FILE_ERROR = "Violation attempt";
+
+    public $STATS_TITLE = "Statistics";
 }
 
 $DICTIONARY = [
